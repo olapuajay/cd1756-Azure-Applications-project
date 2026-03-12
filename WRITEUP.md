@@ -4,44 +4,38 @@
 
 ### 1. Virtual Machine (VM)
 
-**Cost**
-Using a Virtual Machine requires paying for compute resources, storage, and networking. Even the smallest VM instances incur continuous costs because the server runs whether the application is used or not. This makes it more expensive compared to managed services for small projects.
+A Virtual Machine provides full control over the server environment. With a VM, I would need to manually configure the operating system, install Python, set up dependencies, and configure a web server such as Nginx to run the Flask application. This approach offers flexibility because I can customize the infrastructure exactly as needed.
 
-**Scalability**
-Scaling a Virtual Machine usually requires manual intervention. If traffic increases, additional VMs must be configured and load balancers must be set up. This makes scaling slower and more complex compared to managed services.
+However, using a VM also requires more effort to manage the server. Tasks such as updates, security patches, scaling, and monitoring must be handled manually. From a cost perspective, VMs can become more expensive if they run continuously, especially when additional resources are needed for scaling.
 
-**Availability**
-Availability depends on how the VM infrastructure is configured. Developers must manage updates, monitoring, backups, and fault tolerance. Without proper configuration, application downtime can occur.
-
-**Workflow**
-Using a VM requires manual setup of the operating system, runtime environment, networking, security rules, and application deployment. This provides full control over the infrastructure but increases operational complexity.
+In terms of scalability and availability, a VM can support these features, but they require additional configuration such as load balancers or multiple VM instances. Overall, while a VM gives more control over the infrastructure, it increases the complexity of managing and maintaining the application.
 
 ---
 
 ### 2. Azure App Service
 
-**Cost**
-Azure App Service provides multiple pricing tiers, including a Free (F1) tier that allows developers to host small applications at no cost. This makes it very suitable for development, testing, and small-scale projects.
+Azure App Service is a platform-as-a-service (PaaS) solution that allows developers to deploy web applications without managing the underlying server infrastructure. In this case, it provides a much simpler way to deploy the Flask CMS application.
 
-**Scalability**
-App Service supports built-in scaling features. Applications can scale vertically by increasing the pricing tier or horizontally by adding instances. This process is significantly easier compared to managing scaling on a VM.
+With App Service, the platform automatically handles many tasks such as server maintenance, scaling, and availability. Deployment is also easier because the application can be connected directly to a GitHub repository, allowing automatic deployment whenever the code is updated.
 
-**Availability**
-Azure App Service provides high availability by default through Microsoft's managed infrastructure. The platform handles patching, load balancing, and infrastructure maintenance, reducing the operational burden on developers.
+From a cost perspective, App Service offers affordable pricing tiers, including a free tier for development and testing. It also supports automatic scaling and built-in monitoring tools, which makes it easier to manage the application as it grows.
 
-**Workflow**
-Deployment is simplified using GitHub integration, CI/CD pipelines, and built-in deployment tools. Developers can deploy code directly without worrying about server configuration, operating system management, or runtime setup.
+Overall, App Service reduces the operational overhead and allows developers to focus more on building and improving the application instead of managing infrastructure.
 
 ---
 
 ### Chosen Solution: Azure App Service
 
-Azure App Service was chosen as the deployment solution for this CMS application. It simplifies the deployment process by removing the need to manage infrastructure, operating systems, and networking configurations. Additionally, the free pricing tier makes it cost-effective for small projects and development environments. The built-in scalability and high availability provided by the platform allow developers to focus on building application features instead of maintaining servers.
+For this project, I chose Azure App Service to deploy the CMS application. The main reason is that it simplifies the deployment process and eliminates the need to manage servers manually. Since the application is relatively small and focused on demonstrating cloud deployment concepts, App Service provides all the required features with minimal configuration.
+
+Another reason for choosing App Service is its seamless integration with GitHub and Azure services such as Azure SQL Database and Blob Storage. This makes the overall workflow much smoother and allows the application to be deployed quickly and efficiently.
 
 ---
 
 ## Assess App Changes That Would Change the Decision
 
-If the application required more control over the infrastructure, such as installing custom software, modifying the operating system, or implementing specialized networking configurations, a Virtual Machine would become a more suitable deployment option. VMs provide complete administrative control over the server environment, which can be necessary for complex applications.
+The decision between using a Virtual Machine and Azure App Service could change depending on the requirements of the application. If the application required deeper control over the operating system, custom networking configurations, or specialized software installations, then using a Virtual Machine might be more appropriate.
 
-Additionally, if the CMS application evolved into a system requiring custom background services, specialized runtime environments, or advanced networking configurations, a Virtual Machine deployment would provide the flexibility needed to support these requirements. In such cases, the increased infrastructure management effort would be justified by the greater level of control offered by virtual machines.
+For example, if the CMS application needed advanced server customization, background services, or complex infrastructure configurations, a VM would provide the flexibility required for those scenarios. In larger enterprise environments where infrastructure control is critical, VMs are often preferred.
+
+However, for most modern web applications that prioritize ease of deployment, scalability, and managed infrastructure, Azure App Service remains a practical and efficient choice.
